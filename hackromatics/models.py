@@ -56,4 +56,7 @@ class Waypoint(Model):
     '''A Waypoint data structure'''
     pass
 
+class Stop(Model):
+    '''A Waypoint data structure'''
+    pass
 
