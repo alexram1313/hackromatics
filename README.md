@@ -38,3 +38,4 @@ Here is an incomplete list of Syncromatics hosted transit sites:
 - University of San Diego ('http://usdtram.com')
 - National Institute of Health ('http://wttsshuttle.com/')
 - UC San Francisco ('http://ucsfshuttles.com')
+- UC Irvine ('http://ucishuttles.com')
