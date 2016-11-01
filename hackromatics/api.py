@@ -52,6 +52,6 @@ def _request(api, **kargs):
     response = api.session.get(''.join([api.host, kargs['path']]))
     if kargs.get('payload_list', False):
         return payload_type.parse_list(api, response.json() if payload_type!=Waypoint else response.json()[0])
-    return payload_type.parse(api, response.json())
+    return payload_type.parse(api, response.json()) 
 
     
