@@ -1,4 +1,7 @@
-#from itertools import cycle, islice, dropwhile
+#!/usr/bin/env python3
+
+#Test for automated stop announcements for Syncromatics transit routes.
+
 import hackromatics
 import math
 import time
