@@ -7,7 +7,7 @@ from datetime import datetime
 
 import requests
 
-from .models import Region, Route, Vehicle, Waypoint, Stop
+from .models import Region, Route, Vehicle, VehicleArrival, Waypoint, Stop
 
 
 class API:
@@ -36,13 +36,18 @@ class API:
         return _request(self, path=path.format(route_id=route_id), 
                         payload_type=Vehicle, payload_list=True)
 
+    def vehicle_arrivals(self, vehicle_id):
+        path = '/vehicle/{vehicle_id}/arrivals'
+        return _request(self, path=path.format(vehicle_id=vehicle_id), 
+                        payload_type=VehicleArrival, payload_list=True)
+
     def waypoints(self, route_id):
         path = '/route/{route_id}/waypoints'
         return _request(self, path=path.format(route_id=route_id), 
                         payload_type=Waypoint, payload_list=True)
 
     def stops(self, route_id):
-        path = '/route/{route_id}/direction/{route_id}/stops'
+        path = '/route/{route_id}/direction/0/stops'
         return _request(self, path=path.format(route_id=route_id), 
                         payload_type=Stop, payload_list=True)
 
@@ -52,6 +57,6 @@ def _request(api, **kargs):
     response = api.session.get(''.join([api.host, kargs['path']]))
     if kargs.get('payload_list', False):
         return payload_type.parse_list(api, response.json() if payload_type!=Waypoint else response.json()[0])
-    return payload_type.parse(api, response.json()) 
+    return payload_type.parse(api, response.json())
 
     

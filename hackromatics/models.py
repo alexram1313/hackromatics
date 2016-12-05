@@ -51,12 +51,16 @@ class Vehicle(Model):
     '''A Vehicle data structure'''
     pass
 
+class VehicleArrival(Model):
+    '''A Vehicle Arrival data structure'''
+    pass
+
 
 class Waypoint(Model):
     '''A Waypoint data structure'''
     pass
 
 class Stop(Model):
-    '''A Waypoint data structure'''
+    '''A Stop data structure'''
     pass
 
