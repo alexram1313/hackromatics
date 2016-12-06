@@ -28,7 +28,7 @@ host = dict(
 )
 
 # connect to a syncromatics transit web site
-site = 'delaware'
+site = 'uci'
 api = hackromatics.API(host[site])
 
 # to get info about the transit regions...
@@ -50,23 +50,18 @@ for veh in api.vehicles(route):
     print ('(ID: '+str(veh.ID)+')', 'VEHICLE:',veh.Name)
 vehicle = input('Select vehicle by ID: ')
 
-end = False
-fails=0
 
 print ("Now en route!")
 print('--')
 while True:
     delay = 5;
     try:
-        end = True
         
         arrivals = api.vehicle_arrivals(vehicle)
         print([(stops[x.StopID], x.SecondsToArrival) for x in arrivals])
         len_nexts = len(arrivals)
         for i in range(len_nexts):
-            fails=0
             if (arrivals[i].SecondsToArrival > 0):
-                end = False
                 if (arrivals[i].StopID!=stop_ann):
                     if (arrivals[i].SecondsToArrival<=41):
                         #Invoke OS X/macOS System Text-to-speech
@@ -79,15 +74,9 @@ while True:
                     else:
                         delay = 15
                 break
-        if end:
-            fails+=1
-            if fails == 3:
-                break
-            else:
-                delay = 10
-                print('No arrival data received. Trying again in 10 seconds.')
         
     except:
         pass
         
     time.sleep(delay);
+
